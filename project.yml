@@ -1,0 +1,48 @@
+name: Contacter
+options:
+  bundleIdPrefix: com.romadinov
+  deploymentTarget:
+    macOS: "15.0"
+  createIntermediateGroups: true
+
+packages:
+  ContacterCore:
+    path: Packages/ContacterCore
+
+targets:
+  Contacter:
+    type: application
+    platform: macOS
+    sources:
+      - App
+    dependencies:
+      - package: ContacterCore
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: Contacter
+        CFBundleShortVersionString: "$(MARKETING_VERSION)"
+        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
+        LSApplicationCategoryType: public.app-category.productivity
+        NSContactsUsageDescription: Contacter shows, edits and de-duplicates the contacts on this Mac.
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.romadinov.contacter
+        MARKETING_VERSION: "1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        SWIFT_VERSION: "6.0"
+        CODE_SIGN_IDENTITY: "-"
+        CODE_SIGN_STYLE: Manual
+        ENABLE_HARDENED_RUNTIME: NO
+        COMBINE_HIDPI_IMAGES: YES
+        CODE_SIGN_ENTITLEMENTS: App/Contacter.entitlements
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+
+schemes:
+  Contacter:
+    build:
+      targets:
+        Contacter: all
+    test:
+      targets:
+        - package: ContacterCore/ContacterCoreTests
