@@ -11,6 +11,10 @@ xcodebuild -project Contacter.xcodeproj -scheme Contacter -derivedDataPath build
 open build/Build/Products/Debug/Contacter.app
 ```
 
+Release (Developer ID sign, notarize, staple, GitHub release): `scripts/release.sh`
+(`PUBLISH=0` to stop before tagging; `NOTARY_PROFILE` picks the notarytool keychain profile, default `tasker-notary`).
+Icon: edit `scripts/make-icon.swift`, then `scripts/make-appiconset.sh`.
+
 Core logic tests (no Contacts permission needed):
 
 ```sh
